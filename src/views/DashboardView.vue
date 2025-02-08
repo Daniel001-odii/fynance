@@ -17,17 +17,17 @@
          <div class="flex flex-row flex-wrap gap-3 mt-12">
           <div class=" rounded-md bg-black text-white p-6 flex flex-col min-w-sm text-2xl">
             <i class="bi bi-people"></i>
-            <span>Total customers {{ dashboard.no_of_customers }}</span>
+            <span>Total customers {{ dashboard?.no_of_customers }}</span>
           </div>
 
           <div class=" rounded-md bg-black text-white p-6 flex flex-col min-w-sm text-2xl relative">
             <i class="bi bi-cash-stack"></i>
-            <span>Total income {{ dashboard.income.toLocaleString() }}  <small class=" text-red-500 text-[14px]">- {{ dashboard.withdrawals }}</small></span>
+            <span>Total income {{ dashboard?.income?.toLocaleString() }}  <small class=" text-red-500 text-[14px]">- {{ dashboard.withdrawals }}</small></span>
           </div>
 
           <div class=" rounded-md bg-black text-white p-6 flex flex-col min-w-sm text-2xl relative">
             <i class="bi bi-journal-text"></i>
-            <span>Total Ledger Groups {{ dashboard.no_of_groups }} </span>
+            <span>Total Ledger Groups {{ dashboard?.no_of_groups }} </span>
           </div>
          </div>
     
