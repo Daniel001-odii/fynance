@@ -1,6 +1,12 @@
 <template>
     <div class=" ">
-      
+    <div v-if="loading" class=" fixed h-screen w-screen bg-black/20 top-0 left-0 flex justify-center items-center z-10">
+        <div class=" p-10 rounded-lg size-14 shadow-lg flex justify-center items-center bg-white relative">
+            <div class="size-8 border-[6px] border-gray-200 border-t-gray-800 rounded-full animate-spin absolute" style="animation-duration: 0.4s;"></div>
+        </div>
+    </div>
+
+
         <h1 class=" text-5xl font-bold">All Ledger Groups</h1>
 
         <p class=" text-lg mt-4">Click on a group to see all records for the selected group</p>
@@ -42,11 +48,13 @@ import axios from 'axios';
                 groups: [],
                 new_group: false,
                 custom_group: '',
+                loading: false,
             }
         },
         methods: {
             // get all available groups...
             async getAllGroups(){
+                this.loading = true;
                 try{
                     const response = await axios.get(`/customers/groups/all`);
                     console.log("all grups: ", response);
@@ -54,6 +62,7 @@ import axios from 'axios';
                 }catch(error){
                     console.log("error getting all transactions: ", error);
                 }
+                this.loading = false;
             },
 
             createNewGroup(){
