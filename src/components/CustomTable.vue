@@ -2,9 +2,9 @@
 
   <!-- extra details toggle -->
   <div class=" flex flex-row gap-2 my-3">
-    <label for="toggle" class="font-bold text-gray-400">
+    <label for="toggle" class="font-bold">
       <Checkbox class=" " id="toggle" v-model:checked="extraDetails" @update:checked="updateTableShape"/>
-      Show Full Details
+      Show Full Customer Details
     </label>
 
   </div>

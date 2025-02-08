@@ -17,7 +17,7 @@
 
             <Dialog>
                 <DialogTrigger as-child>
-                        <Button class=" flex text-xl p-6" variant="secondary" :disabled="customers?.length == 20">
+                        <Button class=" flex text-xl p-6" variant="secondary" :disabled="customers?.length >= 20">
                         <i class="bi bi-person-plus-fill"></i>
                         <span> Add New Customer</span>
                     </Button>
