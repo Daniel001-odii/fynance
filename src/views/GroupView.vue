@@ -42,8 +42,11 @@
                                 <Label for="reg_no" class="text-right">
                                     group
                                 </Label>
-                                <Input id="reg_no" v-model="new_customer.group" class="col-span-3" disabled />
-                                <!-- <input id="reg_no" v-model="new_customer.regNo" class="col-span-3" /> -->
+                                <div class=" flex flex-row items-center gap-2 relative border w-fit py-[0.3em] px-2 rounded-md">
+                                  <span class="">{{ new_customer.group }}</span>
+                                  <input type="number" class=" w-[50px] px-1 border-none outline-none" min="0" v-model="new_customer.group_index"/>
+                                  <!-- <Input id="reg_no" v-model="new_customer.group_index" class="col-span-3 pl-8" /> -->
+                                </div>
                             </div>
                         </div>
 
@@ -250,6 +253,7 @@
           new_customer: {
             name: '',
             group: this.$route.params.group,
+            group_index: '',
             regDate: '',
             address: '',
             phone: '',
@@ -265,8 +269,8 @@
         },
 
         AutoUpdateRegNumber(){
-            this.new_customer.regNo = this.newRegNumber;
             this.new_customer.address = this.newAddress;
+            this.new_customer.group_index = this.newGroupIndex;
             this.new_customer.regDate = this.customers[this.customers.length - 1].regDate.split("T")[0]
         },
     
@@ -494,10 +498,10 @@
     
       computed: {
         // get last new regNumber
-      
-        newRegNumber(){
+        newGroupIndex(){
+          const last_customer = this.customers[this.customers.length - 1]
             if(this.customers.length > 0){
-                return `${this.$route.params.group}${this.customers.length + 1}`
+                return Number(last_customer.group_index) + 1
             }
         },
 

@@ -1,4 +1,12 @@
 <template>
+    <!-- LOADER -->
+    <div v-if="loading" class=" fixed h-screen w-screen bg-black/20 top-0 left-0 flex justify-center items-center z-10">
+      <div class=" p-10 rounded-lg size-14 shadow-lg flex justify-center items-center bg-white relative">
+        <div class="size-8 border-[6px] border-gray-200 border-t-gray-800 rounded-full animate-spin absolute" style="animation-duration: 0.4s;"></div>
+      </div>
+    </div>
+
+    
     <div v-show="transaction_edit_modal" class=" fixed top-0 left-0 bg-black w-full min-h-screen z-50 backdrop-blur-sm  bg-opacity-50 flex justify-center items-center p-5">
       <div class=" max-w-[700px] bg-white rounded-lg flex flex-col gap-3 p-8 w-full">
         <h1 class=" font-bold text-2xl">edit transaction</h1>
@@ -168,6 +176,7 @@ import axios from 'axios';
                     customer_id: ''
                 },
                 delete_transaction_modal: false,
+                loading: false,
             }
         },
         methods: {
@@ -264,6 +273,7 @@ import axios from 'axios';
         },
 
         async getCustomerData(){
+            this.loading = true;
             try{
                 const response = await axios.get(`/customers/${this.customer_id}`);
                 console.log("customer data: ", response)
@@ -271,6 +281,7 @@ import axios from 'axios';
             }catch(error){
                 console.log("error getting customer data: ", error);
             }
+            this.loading = false;
         },
 
         async deleteCustomerData(id){

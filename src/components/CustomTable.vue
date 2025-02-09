@@ -6,12 +6,10 @@
       <Checkbox class=" " id="toggle" v-model:checked="extraDetails" @update:checked="updateTableShape"/>
       Show Full Customer Details
     </label>
-
   </div>
 
-  {{ typeof(extraDetails) }} - {{ extraDetails }}
 
-  <div v-if="extraDetails" class="max-h-screen overflow-auto">
+  <div class="max-h-screen overflow-auto">
     <table v-if="customers" class="min-w-full bg-white border border-gray-300">
       <thead>
         <tr class="bg-gray-200">
@@ -34,7 +32,12 @@
       </thead>
       <tbody>
         <tr v-for="(customer, index) in customers" :key="index" class="border">
-          <td class="border px-4 py-2">{{ index + 1 }}</td>
+          <!-- <td class="border px-4 py-2">{{ index + 1 }}</td> -->
+          <td class="border px-4 py-2 text-left hover:bg-gray-100 cursor-pointer relative"
+          @dblclick="updateCustomerCell($event.target, customer, 'group_index')">
+            {{ customer.group_index }}
+          </td>
+
           <td class="border px-4 py-2 text-left hover:bg-gray-100 cursor-pointer relative"
             @dblclick="updateCustomerCell($event.target, customer, 'name')">
             <RouterLink :to="`/customers/${customer._id}`" class="hover:underline hover:text-blue-500">
@@ -43,7 +46,9 @@
           </td>
           <td v-if="extraDetails" class="border px-4 py-2 text-left hover:bg-gray-100 cursor-pointer relative"
             @dblclick="updateCustomerCell($event.target, customer, 'group')">
+            <RouterLink :to="`/groups/${customer.group}`" class="hover:underline hover:text-blue-500">
             {{ customer.group }}
+            </RouterLink>
           </td>
 
           <!-- REGDATE - AdDDRESS - PHONE -->
@@ -128,96 +133,6 @@
     </table>
   </div>
 
-  <div v-else class="max-h-screen overflow-auto">
-    <table v-if="customers" class="min-w-full bg-white border border-gray-300">
-      <thead>
-        <tr class="bg-gray-200">
-          <th class="border px-4 py-2 text-left">S/N</th>
-          <th class="border px-4 py-2 text-left">Name</th>
-
-          <th v-for="week in weekTotals" :key="week"
-            class="border px-4 py-2 ">
-            {{ week.date }}
-          </th>
-          <th class="border">W/D</th>
-          <th class="border">W/D</th>
-          <th class="border px-4 py-2">balance</th>
-          <th class="border px-4 py-2">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="(customer, index) in customers" :key="index" class="border">
-          <td class="border px-4 py-2">{{ index + 1 }}</td>
-          <td class="border px-4 py-2 text-left hover:bg-gray-100 cursor-pointer relative"
-            @dblclick="updateCustomerCell($event.target, customer, 'name')">
-            <RouterLink :to="`/customers/${customer._id}`" class="hover:underline hover:text-blue-500">
-              {{ customer.name }}
-            </RouterLink>
-          </td>
-          
-          <td v-for="txn in customer?.deposit_txn" :key="txn" class="border relative hover:bg-gray-100 min-w-[100px]">
-            <span class="!w-full !h-full absolute top-0 left-0 flex justify-center items-center cursor-pointer"
-              v-if="txn.amount != 0" @dblclick="editCell($event.target, txn)">{{ txn.amount?.toLocaleString() }}</span>
-            <span class="!w-full !h-full absolute top-0 left-0 flex justify-center items-center cursor-pointer" v-else
-              @dblclick="
-                addNewTransactionToCell(
-                  $event.target,
-                  txn.date,
-                  0,
-                  'deposit',
-                  customer._id
-                )
-                ">-</span>
-          </td>
-
-          <td v-for="txn in customer?.withdrawal_txn" :key="txn"
-            class="border relative hover:bg-gray-100 min-w-[100px]">
-            <span class="!w-full !h-full absolute top-0 left-0 flex justify-center items-center cursor-pointer"
-              v-if="txn.amount != 0" @dblclick="editCell($event.target, txn)">{{ txn.amount?.toLocaleString() }}</span>
-            <span class="!w-full !h-full absolute top-0 left-0 flex justify-center items-center cursor-pointer" v-else
-              @dblclick="
-                addNewTransactionToCell(
-                  $event.target,
-                  txn.date,
-                  0,
-                  'withdrawal',
-                  customer._id
-                )
-                ">-</span>
-          </td>
-          <td class="border px-4 py-2 cursor-not-allowed">
-            {{ customer?.balance?.toLocaleString() }}
-          </td>
-          <td class="border px-4 py-2">
-            <AlertDialog>
-              <AlertDialogTrigger as-child>
-                <button class="underline text-red-500" @click="currentCustomer = customer">
-                  Delete Customer
-                </button>
-              </AlertDialogTrigger>
-              <AlertDialogContent class="bg-white">
-                <AlertDialogHeader>
-                  <AlertDialogTitle>Are you sure you want to delete this
-                    customer?</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    This action cannot be undone. This will permanently delete
-                    the customers records including all transactions for all
-                    weeks across the ledger groups
-                  </AlertDialogDescription>
-                </AlertDialogHeader>
-                <AlertDialogFooter>
-                  <AlertDialogCancel class="!text-white">Cancel
-                  </AlertDialogCancel>
-                  <AlertDialogAction class="!bg-red-500 !text-white" @click="deleteCustomer">Continue
-                  </AlertDialogAction>
-                </AlertDialogFooter>
-              </AlertDialogContent>
-            </AlertDialog>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
 </template>
 
 <script>
