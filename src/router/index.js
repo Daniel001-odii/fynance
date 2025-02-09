@@ -4,6 +4,7 @@ import DashboardView from '@/views/DashboardView.vue'
 import GroupsLists from '@/views/GroupsLists.vue'
 import GroupView from '@/views/GroupView.vue'
 import CustomersList from '@/views/CustomersList.vue'
+import AccountPage from '@/views/AccountPage.vue'
 
 
 
@@ -34,6 +35,11 @@ const router = createRouter({
       path: '/customers',
       name: 'Customers',
       component: CustomersList,
+    },
+    {
+      path: '/account',
+      name: 'Account',
+      component: AccountPage,
     },
     
     

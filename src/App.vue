@@ -64,10 +64,13 @@ export default {
         </RouterLink>
 
         
-        <Button :variant="this.$route.name == 'Account' ? 'secondary':''" class="p-3  hover:bg-white hover:text-black rounded-md flex flex-row gap-3 text-left justify-start">
-         <i class="bi bi-gear"></i>
-         <span class="hidden md:inline-block">My Account</span>
-        </Button>
+        <RouterLink to="/account" class="">
+          <Button :variant="this.$route.name == 'Account' ? 'secondary':''" 
+          class="p-3  hover:bg-white hover:text-black rounded-md flex flex-row gap-3 text-left justify-start !w-full">
+            <i class="bi bi-gear"></i>
+            <span class="hidden md:inline-block">My Account</span>
+          </Button>
+        </RouterLink>
 
         <!-- Advert Area -->
 
@@ -86,7 +89,7 @@ export default {
       <!-- account status -->
       
      
-      <div class=" flex justify-between items-center py-12 flex flex-wrap">
+      <div class=" flex justify-between items-center py-12 flex-wrap">
         <div class="font-bold text-3xl flex gap-3 items-center">
           <Button @click="$router.back()" variant="ghost">
             <i class="bi bi-arrow-left"></i>

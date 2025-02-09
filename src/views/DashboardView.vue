@@ -44,7 +44,7 @@
          <!-- select week  -->
     <div class=" flex flex-row justify-between py-5">
         <div class="flex flex-row gap-3 items-center w-fit">
-        <Select v-model="weekIndex" @update:modelValue="getWeeklyTransactions()">
+       <!--  <Select v-model="weekIndex" @update:modelValue="getWeeklyTransactions()">
             <SelectTrigger class=" text-white w-[200px]">
             <SelectValue placeholder="Select a week" />
             </SelectTrigger>
@@ -56,11 +56,11 @@
                 </SelectItem>
             </SelectGroup>
             </SelectContent>
-        </Select>
+        </Select> -->
 
-        <!--  <select class="p-2 rounded-lg border w-fit" v-model="weekIndex" @change="getWeeklyTransactions()">
+         <select class="p-2 rounded-lg border w-fit" v-model="weekIndex" @change="getWeeklyTransactions()">
             <option v-for="index in 52" :value="index">week {{ index }}</option>
-        </select> -->
+        </select>
         </div>
 
         <div class="flex flex-row gap-3">
