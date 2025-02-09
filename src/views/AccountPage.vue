@@ -56,7 +56,7 @@ export default {
 
       try {
         const response = await axios.post(
-          "/import-customers",
+          "/customers/import-customers",
           formData,
           {
             headers: { "Content-Type": "multipart/form-data" },

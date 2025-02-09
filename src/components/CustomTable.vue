@@ -9,7 +9,7 @@
   </div>
 
 
-  <div class="max-h-screen overflow-auto">
+  <div class="max-h-[800px] overflow-auto">
     <table v-if="customers" class="min-w-full bg-white border border-gray-300">
       <thead>
         <tr class="bg-gray-200">

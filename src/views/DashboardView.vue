@@ -59,7 +59,7 @@
         </Select> -->
 
          <select class="p-2 rounded-lg border w-fit" v-model="weekIndex" @change="getWeeklyTransactions()">
-            <option v-for="index in 52" :value="index">week {{ index }}</option>
+            <option v-for="index in max_week" :value="index">week {{ index }}</option>
         </select>
         </div>
 
