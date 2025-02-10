@@ -205,6 +205,7 @@ export default {
           variant: "destructive",
           description: error.response.data.message,
         });
+        this.reloadTableData();
       }
       this.loading = false;
     },
@@ -226,6 +227,7 @@ export default {
           variant: "destructive",
           description: error.response.data.message,
         });
+        this.reloadTableData();
       }
       this.loading = false;
     },
