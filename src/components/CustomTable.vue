@@ -329,7 +329,12 @@ export default {
         cell.textContent = isNaN(newValue) ? "-" : newValue.toLocaleString();
         if (input.value !== "" && input.value !== null) {
           this.currentTxn.amount = Number(newValue);
+        } else {
+          // else set input value to 0
+          this.currentTxn.amount = 0
         }
+
+      
       };
 
       input.onkeydown = (event) => {
