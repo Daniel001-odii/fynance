@@ -281,7 +281,16 @@
             try{
                 const response = await axios.post('/customers', this.new_customer );
                 console.log("creatinew customer: ", response);
-                window.location.reload();
+                this.getWeeklyTransactions();
+                this.new_customer = {
+            name: '',
+            group: this.$route.params.group,
+            group_index: '',
+            regDate: '',
+            address: '',
+            phone: '',
+          };
+                // window.location.reload();
             }catch(error){
                 console.log("error creating user: ", error);
                 this.toast({
