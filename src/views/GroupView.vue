@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="button" @click="addNewCustomer()" variant="secondary">
+                        <Button type="button" @click="addNewCustomer()" variant="secondary" :disabled="customers.length >= 20">
                           <span v-if="adding_new_customer">Loading...</span>
                           <span v-else>Add Customer</span>
                         </Button>
