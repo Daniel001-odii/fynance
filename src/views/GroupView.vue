@@ -43,7 +43,7 @@
                                     group
                                 </Label>
                                 <div class=" flex flex-row items-center gap-2 relative border w-fit py-[0.3em] px-2 rounded-md">
-                                  <span class="">{{ new_customer.group }}</span>
+                                  <span class="uppercase">{{ new_customer.group }}</span>
                                   <input type="number" class=" w-[50px] px-1 border-none outline-none" min="0" v-model="new_customer.group_index"/>
                                   <!-- <Input id="reg_no" v-model="new_customer.group_index" class="col-span-3 pl-8" /> -->
                                 </div>
