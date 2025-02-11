@@ -75,7 +75,8 @@
                     </div>
                     <DialogFooter>
                         <Button type="button" @click="addNewCustomer()" variant="secondary">
-                        Add Customer
+                          <span v-if="adding_new_customer">Loading...</span>
+                          <span v-else>Add Customer</span>
                         </Button>
                     </DialogFooter>
                 </DialogContent>
@@ -259,6 +260,7 @@
           },
           toast: useToast().toast,
           ExclamationTriangleIcon,
+          adding_new_customer: false,
         }
       },
     
@@ -278,6 +280,7 @@
         },
 
         async addNewCustomer(){
+          this.adding_new_customer = true;
             try{
                 const response = await axios.post('/customers', this.new_customer );
                 console.log("creatinew customer: ", response);
@@ -290,6 +293,9 @@
             address: '',
             phone: '',
           };
+          this.toast({
+              title: 'New customer created!'
+          });
                 // window.location.reload();
             }catch(error){
                 console.log("error creating user: ", error);
@@ -299,6 +305,7 @@
                     description: error.response.data.message,
                 });
             }
+            this.adding_new_customer = false;
         },
 
         async getWeeklyTransactions(){

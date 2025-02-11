@@ -122,7 +122,7 @@
                 <AlertDialogFooter>
                   <AlertDialogCancel class="!text-white">Cancel
                   </AlertDialogCancel>
-                  <AlertDialogAction class="!bg-red-500 !text-white" @click="deleteCustomer">Continue
+                  <AlertDialogAction class="!bg-red-500 !text-white" @click="deleteCustomer">Delete
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
