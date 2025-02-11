@@ -2,12 +2,15 @@
 import ThePricing from './components/ThePricing.vue';
 import Button from './components/ui/button/Button.vue';
 import Toaster from '@/components/ui/toast/Toaster.vue'
+import ScreenLock from './components/ScreenLock.vue';
+
 
 export default {
   components: {
     Button,
     Toaster,
-    ThePricing
+    ThePricing,
+    ScreenLock,
   },
   data(){
     return{
@@ -31,6 +34,7 @@ export default {
 
 <template>
 
+<ScreenLock/>
 <ThePricing v-if="false"/>
 
   <Toaster />
