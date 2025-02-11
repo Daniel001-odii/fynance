@@ -14,13 +14,13 @@
         <!-- ledger group lists -->
         <div class=" flex flex-row flex-wrap py-3 mt-12 gap-3">
             <RouterLink v-for="group in groups" :to="'/groups/' + group">
-                <Button class="size-[150px] min-w-[150px] bg-blue text-xl flex-1 hover:!bg-slate-100 flex flex-col" >
+                <Button class="size-[150px] !bg-blue-500 !text-white min-w-[150px] bg-blue text-xl flex-1 flex flex-col" >
                     <i class="bi bi-people-fill"></i>
                     <span>GROUP {{ group }}</span>
                 </Button>
             </RouterLink>
             <form @submit="createNewGroup" v-if="new_group" :to="`/groups/${custom_group}`">
-                <Button class="size-[150px] min-w-[150px] bg-blue text-xl flex-1 hover:!bg-slate-100 flex flex-col" >
+                <Button class="size-[150px] min-w-[150px] !bg-blue-500 !text-white text-xl flex-1 flex flex-col" >
                     <i class="bi bi-people-fill"></i>
                     <span>GROUP</span>
                     <input type="text" class="uppercase w-[50px] border" v-model="custom_group" required/>
