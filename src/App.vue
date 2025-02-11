@@ -31,7 +31,7 @@ export default {
 
 <template>
 
-<ThePricing v-if="false"/>
+<ThePricing v-if="true"/>
 
   <Toaster />
   <div class=" flex flex-row min-h-screen gap-6">

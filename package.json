@@ -1,12 +1,16 @@
 {
+  "main": "electron.js",
   "name": "fynance",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && electron-builder",
+    "start": "electron .",
+    "preview": "vite preview",
+    "electron:start": "electron .",
+    "electron:build": "npm run build && electron-builder"
   },
   "dependencies": {
     "@radix-icons/vue": "^1.0.0",
@@ -28,8 +32,26 @@
     "@types/node": "^22.13.1",
     "@vitejs/plugin-vue": "^5.2.1",
     "autoprefixer": "^10.4.20",
+    "electron": "^34.1.1",
+    "electron-builder": "^25.1.8",
     "tailwindcss": "^4.0.4",
     "vite": "^6.0.11",
+    "vite-plugin-electron": "^0.29.0",
     "vite-plugin-vue-devtools": "^7.7.0"
+  },
+  "build": {
+    "appId": "com.xenitsoft.fynance",
+    "productName": "fynance",
+    "files": [
+      "dist/**/*",
+      "main.js",
+      "preload.js"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "win": {
+      "target": "nsis"
+    }
   }
 }
