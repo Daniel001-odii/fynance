@@ -19,7 +19,7 @@
                 <DialogTrigger as-child>
                         <Button class=" flex text-xl p-6" variant="secondary" :disabled="customers?.length >= 20">
                         <i class="bi bi-person-plus-fill"></i>
-                        <span> Add New Customer</span>
+                        <span> Add New Customer </span>
                     </Button>
                 </DialogTrigger>
 
@@ -252,8 +252,8 @@
           new_customer: {
             name: '',
             group: this.$route.params.group,
-            group_index: '',
-            regDate: '',
+            group_index: 1,
+            regDate: (new Date()).toISOString()?.split("T")[0],
             address: '',
             phone: '',
           },
@@ -269,7 +269,7 @@
 
         AutoUpdateRegNumber(){
             this.new_customer.address = this.newAddress;
-            this.new_customer.group_index = this.newGroupIndex;
+            this.new_customer.group_index = this.newGroupIndex || 1;
             this.new_customer.regDate = this.customers[this.customers.length - 1].regDate.split("T")[0]
         },
     
@@ -510,6 +510,8 @@
           const last_customer = this.customers[this.customers.length - 1]
             if(this.customers.length > 0){
                 return Number(last_customer.group_index) + 1
+            } else if(this.customers.length == 0){
+              return 1
             }
         },
 
