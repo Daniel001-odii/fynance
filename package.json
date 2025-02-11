@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && electron-builder",
+    "build": "vite build",
     "start": "electron .",
     "preview": "vite preview",
     "electron:start": "electron .",
