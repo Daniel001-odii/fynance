@@ -3,7 +3,7 @@ import ThePricing from './components/ThePricing.vue';
 import Button from './components/ui/button/Button.vue';
 import Toaster from '@/components/ui/toast/Toaster.vue'
 import ScreenLock from './components/ScreenLock.vue';
-
+import ConnectionStatus from '@/components/ConnectionStatus.vue';
 
 export default {
   components: {
@@ -11,6 +11,7 @@ export default {
     Toaster,
     ThePricing,
     ScreenLock,
+    ConnectionStatus,
   },
   data(){
     return{
@@ -38,6 +39,8 @@ export default {
 <ThePricing v-if="false"/>
 
   <Toaster />
+  <ConnectionStatus/>
+  <!-- <span>connection status is up</span> -->
   <div class=" flex flex-row min-h-screen gap-6">
 
 
@@ -68,13 +71,13 @@ export default {
         </RouterLink>
 
         
-        <RouterLink to="/account" class="">
+       <!--  <RouterLink to="/account" class="">
           <Button :variant="this.$route.name == 'Account' ? 'secondary':''" 
           class="p-3  hover:bg-white hover:text-black rounded-md flex flex-row gap-3 text-left justify-start !w-full">
             <i class="bi bi-gear"></i>
             <span class="hidden md:inline-block">My Account</span>
           </Button>
-        </RouterLink>
+        </RouterLink> -->
 
         <!-- Advert Area -->
 
