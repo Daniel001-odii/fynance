@@ -67,7 +67,7 @@ export default {
 
 
   <ScreenLock />
-  <ThePricing v-if="true" />
+  <ThePricing v-if="false" />
 
   <Toaster />
   <ConnectionStatus />
