@@ -186,6 +186,7 @@
         },
 
         async downoadReports(){
+          this.loading = true;
           try{
             const res = await axios.get('/txns/reports', {
               responseType: 'arraybuffer',
@@ -210,6 +211,7 @@
             // this.error = err.response.data.message
             console.log("err getting reports ", err)
           }
+          this.loading = false;
         },
 
         async getDashboardData(){
