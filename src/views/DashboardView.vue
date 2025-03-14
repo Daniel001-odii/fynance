@@ -29,6 +29,11 @@
             <i class="bi bi-journal-text"></i>
             <span>Total Ledger Groups {{ dashboard?.no_of_groups }} </span>
           </div>
+
+          <button @click="downoadReports" class=" rounded-md bg-blue-500 text-white p-6 flex flex-col min-w-sm text-2xl relative">
+            <i class="bi bi-download"></i>
+            <span>Download Excel Sheet </span>
+          </button>
          </div>
     
         <!-- error display area -->
@@ -178,6 +183,33 @@
     
         updateStoredWeekIndex(){
           localStorage.setItem("weekIndex", this.weekIndex);
+        },
+
+        async downoadReports(){
+          try{
+            const res = await axios.get('/txns/reports', {
+              responseType: 'arraybuffer',
+            });
+            const blob = new Blob([res.data], {
+              type: 'application/octet-stream',
+            });
+
+            const url = window.URL.createObjectURL(blob);
+
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Ledger-Excel.xlsx';
+            document.body.appendChild(link);
+            link.click();
+
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            console.log('res from reports download: ', res)
+            alert('Excel reports downloaded succesfully!');
+          }catch(err){
+            // this.error = err.response.data.message
+            console.log("err getting reports ", err)
+          }
         },
 
         async getDashboardData(){
